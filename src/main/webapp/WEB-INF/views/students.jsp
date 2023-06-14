@@ -37,21 +37,21 @@
 				</c:url>
 
 				<tr
-					style="background-color:${status.index % 2==0? 'white':'yellow'}">
-					<td>${student.id}</td>
-					<td>${student.firstName}</td>
-					<td>${student.lastName}</td>
-					<td>${student.grade}</td>
-					<td>${student.createDate}</td>
-					<td>
-						<!-- show the links --> 
-						 
-						<a class="update" href="${updateLink}">Update</a> 
-						<a class="delete" href="${pageContext.request.contextPath}/students/delete/${student.id}">Delete</a>
-						<!--   <a class="delete" href="${deleteLink}"> Delete</a>-->
-					</td>
+				style="background-color:${status.index % 2==0? 'lightgray':'#9484d5'}">
+				<td>${student.id}</td>
+				<td>${student.firstName}</td>
+				<td>${student.lastName}</td>
+				<td>${student.grade}</td>
+				<td>${student.createDate}</td>
+				<td>
+					<!-- show the links --> 
+					 
+					<a class="update" href="${updateLink}">Update</a> 
+					<a class="delete" href="${pageContext.request.contextPath}/students/delete/${student.id}">Delete</a>
+					<!--   <a class="delete" href="${deleteLink}"> Delete</a>-->
+				</td>
 
-				</tr>
+			</tr>
 			</c:forEach>
 		</table>
 		<p><a class="normal" href="${pageContext.request.contextPath}/students/new">Add Student</a>

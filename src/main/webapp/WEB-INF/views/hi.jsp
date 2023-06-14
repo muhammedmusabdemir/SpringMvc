@@ -8,10 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>
 ${message}
 
 ${messagebody}
 
+</h2>
 </body>
 </html>
