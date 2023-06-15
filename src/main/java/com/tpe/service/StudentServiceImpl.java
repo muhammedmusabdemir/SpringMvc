@@ -1,13 +1,10 @@
 package com.tpe.service;
 
 import com.tpe.domain.Student;
+import com.tpe.exception.ResourceNotFoundException;
 import com.tpe.repository.StudentRepository;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,16 +25,21 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public List<Student> getAllStudent() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Student getStudentById(Long id) {
-        return null;
+        Student student = repository.findById(id).orElseThrow(()->new ResourceNotFoundException("Student not found by id: " + id));
+
+        //get(); -> NoSuchElementException
+        return student;
     }
 
     @Override
     public void deleteStudent(Long id) {
+        Student student = getStudentById(id);
+        repository.delete(student.getId());
 
     }
 }

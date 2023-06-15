@@ -15,7 +15,7 @@
 	align-items: center;
 	flex-direction: column;
     font-size: 25rem;
-    color:green;
+    color:black;
     background-color: gray;
   }
 </style>

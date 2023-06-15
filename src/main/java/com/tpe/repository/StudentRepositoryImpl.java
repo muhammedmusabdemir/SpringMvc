@@ -23,9 +23,7 @@ public class StudentRepositoryImpl implements StudentRepository{
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 
-
         session.saveOrUpdate(student); //db de kayit varsa update eder, yoksa kaydeder.
-
 
         tx.commit();
         session.close();
@@ -34,16 +32,39 @@ public class StudentRepositoryImpl implements StudentRepository{
 
     @Override
     public List<Student> findAll() {
-        return null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        List<Student> studentList = session.createQuery("FROM Student",Student.class).getResultList();
+
+        tx.commit();
+        session.close();
+
+        return studentList;
     }
 
     @Override
     public Optional<Student> findById(Long id) {
-        return Optional.empty();
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        Student student = session.get(Student.class,id); //olmayan id de student=null -> NullPointerException
+        Optional<Student> optionalStudent = Optional.ofNullable(student); //student null ise bos bir optonal obj doner
+
+        tx.commit();
+        session.close();
+        return optionalStudent;
     }
 
     @Override
     public void delete(Long id) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
 
+        Student student = session.load(Student.class,id);
+        session.delete(student);
+
+        tx.commit();
+        session.close();
     }
 }
